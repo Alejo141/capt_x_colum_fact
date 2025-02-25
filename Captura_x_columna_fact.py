@@ -19,8 +19,11 @@ def procesar_archivo(file):
 
     # Cambiar a mayusculas los campos address y localidad
 
-    df_filtrado["address"] = df_filtrado["address"].upper()
-    df_filtrado["localidad"] = df_filtrado["localidad"].upper()
+    if "address" in df_filtrado.columns:
+    df_filtrado["address"] = df_filtrado["address"].fillna("").astype(str).str.upper()
+    
+    if "localidad" in df_filtrado.columns:
+    df_filtrado["localidad"] = df_filtrado["localidad"].fillna("").astype(str).str.upper()
     
     return df_filtrado
 
