@@ -11,6 +11,11 @@ def procesar_archivo(file):
     df_filtrado["nfacturasiigo"] = df_filtrado["nfacturasiigo"].astype(str).str.replace("-", "", regex=True)
     df_filtrado["nui"] = df_filtrado["nui"].astype(str).str.replace("-", "", regex=True)
     
+    # Formatear las fechas a yyyy-mm-dd
+    df_filtrado["fechaemi"] = pd.to_datetime(df_filtrado["fechaemi"], errors='coerce').dt.strftime('%Y-%m-%d')
+    df_filtrado["p_inicial"] = pd.to_datetime(df_filtrado["p_inicial"], errors='coerce').dt.strftime('%Y-%m-%d')
+    df_filtrado["p_final"] = pd.to_datetime(df_filtrado["p_final"], errors='coerce').dt.strftime('%Y-%m-%d')
+    
     return df_filtrado
 
 def generar_csv(df):
@@ -33,4 +38,4 @@ if archivo is not None:
     st.dataframe(df_filtrado)  # Muestra la tabla con las columnas seleccionadas
     
     csv = generar_csv(df_filtrado)
-    st.download_button(label="📥 Descargar CSV", data=csv, file_name="archivo_filtrado.csv", mime="text/csv")
+    st.download_button(label="💽 Descargar CSV", data=csv, file_name="archivo_filtrado.csv", mime="text/csv")
