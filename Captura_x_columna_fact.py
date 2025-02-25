@@ -10,7 +10,9 @@ def procesar_archivo(file):
     
     # Eliminar guiones de las columnas nfacturasiigo y nui
     df_filtrado["nfacturasiigo"] = df_filtrado["nfacturasiigo"].astype(str).str.replace("-", "", regex=True)
-    df_filtrado["nui"] = int(df_filtrado["nui"].astype(str).str.replace("-", "", regex=True))
+    df_filtrado["nui"] = df_filtrado["nui"].astype(str).str.replace("-", "", regex=True)
+
+    df_filtrado["nui"] = int(df_filtrado["nui"])
     
     # Formatear las fechas a yyyy-mm-dd
     df_filtrado["fechaemi"] = pd.to_datetime(df_filtrado["fechaemi"], errors='coerce').dt.strftime('%Y-%m-%d')
