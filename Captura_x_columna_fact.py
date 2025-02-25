@@ -10,7 +10,7 @@ def procesar_archivo(file):
     
     # Eliminar guiones de las columnas nfacturasiigo y nui
     df_filtrado["nfacturasiigo"] = df_filtrado["nfacturasiigo"].astype(str).str.replace("-", "", regex=True)
-    df_filtrado["nui"] = df_filtrado["nui"].astype(str).str.replace("-", "", regex=True)
+    df_filtrado["nui"] = int(df_filtrado["nui"].astype(str).str.replace("-", "", regex=True))
     
     # Formatear las fechas a yyyy-mm-dd
     df_filtrado["fechaemi"] = pd.to_datetime(df_filtrado["fechaemi"], errors='coerce').dt.strftime('%Y-%m-%d')
@@ -20,7 +20,7 @@ def procesar_archivo(file):
     # Convertir las columnas address y localidad a mayúsculas
     df_filtrado["address"] = df_filtrado["address"].astype(str).str.upper()
     df_filtrado["localidad"] = df_filtrado["localidad"].astype(str).str.upper()
-    
+
     return df_filtrado
 
 def generar_xlsx(df):
