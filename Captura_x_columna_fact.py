@@ -38,4 +38,5 @@ if archivo is not None:
     st.dataframe(df_filtrado)  # Muestra la tabla con las columnas seleccionadas
     
     csv = generar_csv(df_filtrado)
-    st.download_button(label="📥 Descargar CSV", data=csv, file_name="archivo_filtrado.csv", mime="text/csv")
+    st.download_button(label="📥 Descargar CSV", data=csv, file_name={archivo}, mime="text/csv")
+    messagebox.showinfo("Éxito", f'Datos consolidados guardados en: {archivo}')
