@@ -19,9 +19,9 @@ def procesar_archivo(file):
     
     return df_filtrado
 
-def generar_csv(df):
+def generar_xslx(df):
     output = BytesIO()
-    df.to_csv(output, index=False, encoding='utf-8')
+    df.to_excel(output, index=False, engine='openpyxl')
     output.seek(0)
     return output
 
