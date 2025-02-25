@@ -19,7 +19,7 @@ def procesar_archivo(file):
     
     return df_filtrado
 
-def generar_xslx(df):
+def generar_xlsx(df):
     output = BytesIO()
     df.to_excel(output, index=False, engine='openpyxl')
     output.seek(0)
