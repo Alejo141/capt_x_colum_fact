@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from io import BytesIO
+import os
 
 def procesar_archivo(file):
     df = pd.read_excel(file)
@@ -37,6 +38,6 @@ if archivo is not None:
     st.success("Archivo procesado correctamente.")
     st.dataframe(df_filtrado)  # Muestra la tabla con las columnas seleccionadas
     
-    csv = generar_csv(df_filtrado)
-    st.download_button(label="📥 Descargar CSV", data=csv, file_name={archivo}, mime="text/csv")
-    messagebox.showinfo("Éxito", f'Datos consolidados guardados en: {archivo}')
+    xlsx = generar_xlsx(df_filtrado)
+    nombre_salida = os.path.splitext(archivo.name)[0] + ".xlsx"
+    st.download_button(label="📥 Descargar CSV", data=xlsx, file_name=nombre_salida, mime="text/xlsx")
