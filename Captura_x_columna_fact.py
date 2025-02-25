@@ -29,6 +29,13 @@ def generar_xlsx(df):
     output.seek(0)
     return output
 
+def generar_csv(df):
+    output = BytesIO()
+    df.to_csv(output, index=False, encoding='utf-8')
+    output.seek(0)
+    return output
+
+
 # Configuración de la página
 st.set_page_config(page_title="Captura de datos por columna - Facturación", page_icon="📂", layout="centered")
 st.title("📂 Captura de datos por columna - Facturación")
@@ -45,3 +52,7 @@ if archivo is not None:
     xlsx = generar_xlsx(df_filtrado)
     nombre_salida = os.path.splitext(archivo.name)[0] + ".xlsx"
     st.download_button(label="📥 Descargar Excel", data=xlsx, file_name=nombre_salida, mime="text/xlsx")
+
+    csv = generar_csv(df_filtrado)
+    nombre_salida = os.path.splitext(archivo.name)[0] + ".csv"
+    st.download_button(label="📥 Descargar CSV", data=csv, file_name=nombre_salida, mime="text/csv")
