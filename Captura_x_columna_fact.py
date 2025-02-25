@@ -16,6 +16,11 @@ def procesar_archivo(file):
     df_filtrado["fechaemi"] = pd.to_datetime(df_filtrado["fechaemi"], errors='coerce').dt.strftime('%Y-%m-%d')
     df_filtrado["p_inicial"] = pd.to_datetime(df_filtrado["p_inicial"], errors='coerce').dt.strftime('%Y-%m-%d')
     df_filtrado["p_final"] = pd.to_datetime(df_filtrado["p_final"], errors='coerce').dt.strftime('%Y-%m-%d')
+
+    # Cambiar a mayusculas los campos address y localidad
+
+    df_filtrado["address"] = df_filtrado["address"].upper()
+    df_filtrado["localidad"] = df_filtrado["localidad"].upper()
     
     return df_filtrado
 
