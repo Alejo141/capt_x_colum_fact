@@ -40,4 +40,4 @@ if archivo is not None:
     
     xlsx = generar_xlsx(df_filtrado)
     nombre_salida = os.path.splitext(archivo.name)[0] + ".xlsx"
-    st.download_button(label="📥 Descargar CSV", data=xlsx, file_name=nombre_salida, mime="text/xlsx")
+    st.download_button(label="📥 Descargar Excel", data=xlsx, file_name=nombre_salida, mime="text/xlsx")
